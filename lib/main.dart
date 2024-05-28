@@ -1,9 +1,12 @@
+import 'package:era_developers_test_flutter/app_provider.dart';
+import 'package:era_developers_test_flutter/bloc/news/news_bloc.dart';
 import 'package:era_developers_test_flutter/screens/news_list/news_list_screen.dart';
 import 'package:era_developers_test_flutter/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(const App());
+  runApp(const AppProviders(child: App()));
 }
 
 class App extends StatelessWidget {
@@ -11,6 +14,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<NewsBloc>();
     return MaterialApp(
       title: 'Test Flutter App',
       debugShowCheckedModeBanner: false,
