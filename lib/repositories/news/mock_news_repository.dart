@@ -1,4 +1,4 @@
-import 'package:forestvpn_test/repositories/news/repository.dart';
+import 'package:era_developers_test_flutter/repositories/news/repository.dart';
 
 class MockNewsRepository implements AbstractNewsRepository {
   @override
@@ -24,9 +24,9 @@ final _mockArticles = [
     title: 'We are processing your request...',
     publicationDate: DateTime.now().subtract(const Duration(days: 1)),
     imageUrl: 'https://ibb.co/SvH799m',
-    description: '''Please excuse the interruption.  
-Due to Google's efforts to maintain a “safe ads ecosystem” for its advertisers, publishers and users from fraud and bad experiences, Google has placed restrictions on our ad serving that limit our ability to provide free VPN services. 
-Regrettably, this is beyond our control.  
+    description: '''Please excuse the interruption.
+Due to Google's efforts to maintain a “safe ads ecosystem” for its advertisers, publishers and users from fraud and bad experiences, Google has placed restrictions on our ad serving that limit our ability to provide free VPN services.
+Regrettably, this is beyond our control.
 To continue to enjoy ForestVPN without interruptions, please upgrade to our Premium version.''',
   ),
   Article(
