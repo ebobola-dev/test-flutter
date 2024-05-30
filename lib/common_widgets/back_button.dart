@@ -4,7 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class MyBackButton extends StatelessWidget {
   final VoidCallback? onTap;
-  const MyBackButton({super.key, this.onTap});
+  final Color? iconColor;
+  const MyBackButton({super.key, this.onTap, this.iconColor});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class MyBackButton extends StatelessWidget {
       icon: SvgPicture.asset(
         IconPaths.angleLeft,
         colorFilter: ColorFilter.mode(
-          Theme.of(context).iconTheme.color!,
+          iconColor ?? Theme.of(context).iconTheme.color!,
           BlendMode.srcIn,
         ),
       ),

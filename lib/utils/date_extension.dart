@@ -30,4 +30,8 @@ extension MyDateTimeExtension on DateTime {
 
     return DateFormat('dd.MM.yyyy HH:mm').format(this);
   }
+
+  String get fullHumanReadableString {
+    return DateFormat('dd.MM.yyyy HH:mm').format(this);
+  }
 }
