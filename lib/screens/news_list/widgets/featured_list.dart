@@ -12,13 +12,14 @@ class FeaturedList extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.featuredNews != current.featuredNews,
       builder: (context, state) {
-        return ListView.builder(
+        return PageView(
+          clipBehavior: Clip.none, // For shadows
           scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemCount: state.featuredNews.length,
-          itemBuilder: (context, index) => FeaturedCard(
-            article: state.featuredNews[index],
-          ),
+          children: state.featuredNews
+              .map((article) => FeaturedCard(
+                    article: article,
+                  ))
+              .toList(),
         );
       },
     );

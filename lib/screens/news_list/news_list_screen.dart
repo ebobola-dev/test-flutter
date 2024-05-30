@@ -17,28 +17,37 @@ class NewsListScreen extends StatelessWidget {
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(28.0, 20.0, 28.0, 0.0),
+            padding: const EdgeInsets.only(top: 20.0),
             child: Column(
               children: [
-                Align(
-                  child: Text(
-                    "Featured",
-                    style: Theme.of(context).textTheme.titleMedium,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                  child: Align(
+                    child: Text(
+                      "Featured",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    alignment: Alignment.topLeft,
                   ),
-                  alignment: Alignment.topLeft,
                 ),
                 const SizedBox(height: 20.0),
                 const Flexible(
                   flex: 1,
-                  child: FeaturedList(),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 28.0),
+                    child: FeaturedList(),
+                  ),
                 ),
                 const SizedBox(height: 20.0),
-                Align(
-                  child: Text(
-                    "Latest news",
-                    style: Theme.of(context).textTheme.titleMedium,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                  child: Align(
+                    child: Text(
+                      "Latest news",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    alignment: Alignment.topLeft,
                   ),
-                  alignment: Alignment.topLeft,
                 ),
                 const SizedBox(height: 20.0),
                 const Flexible(

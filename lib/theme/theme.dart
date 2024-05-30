@@ -8,19 +8,19 @@ ThemeData getThemeData(BuildContext context) => ThemeData.light().copyWith(
       scaffoldBackgroundColor: backgroundColor,
       iconTheme: const IconThemeData(color: iconColor),
       textTheme: const TextTheme(
-        titleLarge: TextStyle(
-          fontSize: 28.0,
-        ),
-        titleMedium: TextStyle(
-          fontSize: 20.0,
-        ),
+        titleLarge: TextStyle(fontSize: 28.0),
+        titleMedium: TextStyle(fontSize: 20.0),
+        bodyMedium: TextStyle(fontSize: 16.0),
+        bodySmall: TextStyle(fontSize: 12.0),
       ).apply(
         fontFamily: defaultFont,
         bodyColor: textColor,
+        displayColor: textColor,
       ),
       appBarTheme: const AppBarTheme(
         centerTitle: true,
-        color: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         iconTheme: IconThemeData(color: iconColor),
         titleTextStyle: TextStyle(
           color: textColor,
@@ -37,5 +37,13 @@ ThemeData getThemeData(BuildContext context) => ThemeData.light().copyWith(
             borderRadius: BorderRadius.circular(12.0),
           ),
         ),
+      ),
+      cardTheme: CardTheme(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        clipBehavior: Clip.hardEdge,
+        elevation: 4,
+        shadowColor: const Color(0x40000000),
       ),
     );
