@@ -7,6 +7,7 @@ ThemeData getThemeData(BuildContext context) => ThemeData.light().copyWith(
       secondaryHeaderColor: secondaryColor,
       scaffoldBackgroundColor: backgroundColor,
       iconTheme: const IconThemeData(color: iconColor),
+      dividerColor: greyTextColor,
       textTheme: const TextTheme(
         titleLarge: TextStyle(fontSize: 28.0),
         titleMedium: TextStyle(fontSize: 20.0),
@@ -29,6 +30,7 @@ ThemeData getThemeData(BuildContext context) => ThemeData.light().copyWith(
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
+          disabledForegroundColor: greyTextColor,
           textStyle: const TextStyle(
             color: textColor,
             fontSize: 18.0,

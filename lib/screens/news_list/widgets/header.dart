@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:era_developers_test_flutter/bloc/news/news_bloc.dart';
 import 'package:era_developers_test_flutter/common_widgets/back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -16,12 +18,22 @@ class Header extends StatelessWidget {
         ),
         title: const Text('Notifications'),
         actions: [
-          TextButton(
-            onPressed: () => log('Tap on "Mark all read"', name: 'Header'),
-            child: Text(
-              'Mark all read',
-              style: TextStyle(color: Theme.of(context).iconTheme.color),
-            ),
+          BlocBuilder<NewsBloc, NewsState>(
+            buildWhen: (previous, current) =>
+                previous.isLoading != current.isLoading,
+            builder: (context, state) {
+              return TextButton(
+                onPressed: state.isLoading
+                    ? null
+                    : () => context
+                        .read<NewsBloc>()
+                        .add(const NewsEvent.markAllReaded()),
+                child: Text(
+                  'Mark all read',
+                  style: TextStyle(color: Theme.of(context).iconTheme.color),
+                ),
+              );
+            },
           ),
         ],
       ),

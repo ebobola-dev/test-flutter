@@ -47,6 +47,10 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         newFeaturesNews.add(articles[0].copyWith(readed: true));
         newLatestNews.add(articles[1].copyWith(readed: true));
       }
+      log(
+        'News marked readed -> Featured(${newFeaturesNews.length}), Latest(${newLatestNews.length})',
+        name: 'NewsBloc',
+      );
       emit(state.copyWith(
         featuredNews: newFeaturesNews,
         latestNews: newLatestNews,
@@ -58,15 +62,27 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           .indexWhere((article) => article.id == event.articleId);
       final articleIndexInLatest = state.latestNews
           .indexWhere((article) => article.id == event.articleId);
+      log(
+        'Try mark readed article(${event.articleId})',
+        name: 'NewsBloc',
+      );
       List<Article> newFeaturesNews = List.from(state.featuredNews);
       List<Article> newLatestNews = List.from(state.latestNews);
       if (articleIndexInFeatures != -1) {
         newFeaturesNews[articleIndexInFeatures] =
             newFeaturesNews[articleIndexInFeatures].copyWith(readed: true);
+        log(
+          'Featured(${event.articleId}) marked readed',
+          name: 'NewsBloc',
+        );
       }
       if (articleIndexInLatest != -1) {
         newLatestNews[articleIndexInLatest] =
             newLatestNews[articleIndexInLatest].copyWith(readed: true);
+        log(
+          'Latest(${event.articleId}) marked readed',
+          name: 'NewsBloc',
+        );
       }
       emit(state.copyWith(
         featuredNews: newFeaturesNews,
