@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:era_developers_test_flutter/bloc/news/news_bloc.dart';
+import 'package:era_developers_test_flutter/common_widgets/animated_switch_page.dart';
 import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
+import 'package:era_developers_test_flutter/screens/news_view/news_view_screen.dart';
 import 'package:era_developers_test_flutter/utils/date_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LatestCard extends StatelessWidget {
@@ -17,9 +16,9 @@ class LatestCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 28.0),
       child: InkWell(
-        onTap: () => log(
-          'Tap on latest article (${article.title})',
-          name: 'LatestCard',
+        onTap: () => animatedSwitchPage(
+          context,
+          NewsViewScreen(article: article),
         ),
         borderRadius: BorderRadius.circular(9.0),
         child: Container(

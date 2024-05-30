@@ -1,6 +1,6 @@
-import 'dart:developer';
-
+import 'package:era_developers_test_flutter/common_widgets/animated_switch_page.dart';
 import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
+import 'package:era_developers_test_flutter/screens/news_view/news_view_screen.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedCard extends StatelessWidget {
@@ -12,9 +12,9 @@ class FeaturedCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 28.0),
       child: InkWell(
-        onTap: () => log(
-          'Tap on featured article (${article.title})',
-          name: 'FeaturedCard',
+        onTap: () => animatedSwitchPage(
+          context,
+          NewsViewScreen(article: article),
         ),
         borderRadius: BorderRadius.circular(12.0),
         child: Container(

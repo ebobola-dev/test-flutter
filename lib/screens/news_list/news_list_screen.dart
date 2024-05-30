@@ -25,8 +25,9 @@ class NewsListScreen extends StatelessWidget {
               buildWhen: (previous, current) =>
                   previous.isLoading != current.isLoading,
               builder: (context, state) {
+                final Widget child;
                 if (state.isLoading && state.isEmpty) {
-                  return Padding(
+                  child = Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 28.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -40,44 +41,56 @@ class NewsListScreen extends StatelessWidget {
                       ],
                     ),
                   );
+                } else {
+                  child = Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                        child: Align(
+                          child: Text(
+                            "Featured",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          alignment: Alignment.topLeft,
+                        ),
+                      ),
+                      const SizedBox(height: 20.0),
+                      const Flexible(
+                        flex: 1,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 28.0),
+                          child: FeaturedList(),
+                        ),
+                      ),
+                      const SizedBox(height: 20.0),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                        child: Align(
+                          child: Text(
+                            "Latest news",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          alignment: Alignment.topLeft,
+                        ),
+                      ),
+                      const SizedBox(height: 20.0),
+                      const Flexible(
+                        flex: 1,
+                        child: LatestList(),
+                      ),
+                    ],
+                  );
                 }
-                return Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                      child: Align(
-                        child: Text(
-                          "Featured",
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        alignment: Alignment.topLeft,
-                      ),
-                    ),
-                    const SizedBox(height: 20.0),
-                    const Flexible(
-                      flex: 1,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 28.0),
-                        child: FeaturedList(),
-                      ),
-                    ),
-                    const SizedBox(height: 20.0),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                      child: Align(
-                        child: Text(
-                          "Latest news",
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        alignment: Alignment.topLeft,
-                      ),
-                    ),
-                    const SizedBox(height: 20.0),
-                    const Flexible(
-                      flex: 1,
-                      child: LatestList(),
-                    ),
-                  ],
+                return AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 400),
+                  reverseDuration: const Duration(milliseconds: 400),
+                  switchInCurve: Curves.easeIn,
+                  switchOutCurve: Curves.easeIn,
+                  transitionBuilder: (child, animation) => ScaleTransition(
+                    scale: animation,
+                    child: child,
+                  ),
+                  child: child,
                 );
               },
             ),
