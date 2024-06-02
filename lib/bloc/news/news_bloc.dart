@@ -22,14 +22,14 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       emit(state.copyWith(isLoading: true));
       log(
         'News loading...',
-        name: 'NewsBloc',
+        name: 'NewsBloc | _Load',
       );
       await Future.delayed(const Duration(seconds: 3));
       final newFeaturedNews = await _newsRepository.getFeaturedArticles();
       final newLatestNews = await _newsRepository.getLatestArticles();
       log(
         'News loaded -> Featured(${newFeaturedNews.length}), Latest(${newLatestNews.length})',
-        name: 'NewsBloc',
+        name: 'NewsBloc | _Load',
       );
       emit(state.copyWith(
         featuredNews: newFeaturedNews,
@@ -49,7 +49,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       }
       log(
         'News marked readed -> Featured(${newFeaturesNews.length}), Latest(${newLatestNews.length})',
-        name: 'NewsBloc',
+        name: 'NewsBloc | _MarkAllReaded',
       );
       emit(state.copyWith(
         featuredNews: newFeaturesNews,
@@ -64,7 +64,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           .indexWhere((article) => article.id == event.articleId);
       log(
         'Try mark readed article(${event.articleId})',
-        name: 'NewsBloc',
+        name: 'NewsBloc | _MarkOneReaded',
       );
       List<Article> newFeaturesNews = List.from(state.featuredNews);
       List<Article> newLatestNews = List.from(state.latestNews);
@@ -73,7 +73,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
             newFeaturesNews[articleIndexInFeatures].copyWith(readed: true);
         log(
           'Featured(${event.articleId}) marked readed',
-          name: 'NewsBloc',
+          name: 'NewsBloc | _MarkOneReaded',
         );
       }
       if (articleIndexInLatest != -1) {
@@ -81,7 +81,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
             newLatestNews[articleIndexInLatest].copyWith(readed: true);
         log(
           'Latest(${event.articleId}) marked readed',
-          name: 'NewsBloc',
+          name: 'NewsBloc | _MarkOneReaded',
         );
       }
       emit(state.copyWith(
